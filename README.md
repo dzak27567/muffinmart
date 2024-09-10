@@ -1,9 +1,14 @@
 # Muffin Mart
 ## Nama : Fadhlurohman Dzaki
 ## Npm : 2306202132
-## Link : https://fadhlurohman-dzaki-muffinmart.pbp.cs.ui.ac.id/
+## Link : http://fadhlurohman-dzaki-muffinmart.pbp.cs.ui.ac.id/
 
 ## Tugas 2 Implementasi MVT pada Django
+
+<details>
+<summary>Click for more detail</summary>
+<br>
+
 ### Cara implementasi checklist
 1. Membuat _Repository_ baru bernama muffinmart di Github.
 2. Melakukan _clone_ pada _repository_ tersebut ke penyimpanan lokal komputer
@@ -117,7 +122,7 @@
 
 ### Bagan dan penjelasan
 
-**Bagan requst client**
+
 ![](images/bagan_final.png)
 
 Alur proses:
