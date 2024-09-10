@@ -117,7 +117,7 @@
 
 ### Bagan dan penjelasan
 
-![](images\bagannnya.jpg)
+![](images\bagan_final.png)
 
 Alur proses:
 
