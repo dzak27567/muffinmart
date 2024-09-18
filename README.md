@@ -57,7 +57,7 @@ Penyerang dapat membuat situs web atau email yang berisi formulir atau skrip yan
 ## Mengakses JSON dengan ID
 ![](images/json_withid.png)
 
-
+</details>
 
 # Tugas 2 Implementasi MVT pada Django
 <details>
