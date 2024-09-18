@@ -23,8 +23,8 @@
     <th>Quantity</th>
   </tr>
 
-  {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
-  {% endcomment %} 
+
+ 
   {% for product_entry in product_entries %}
   <tr>
     <td>{{product_entry.name}}</td>
@@ -37,7 +37,6 @@
 {% endif %}
 
 <br />
-
 <a href="{% url 'main:create_product_entry' %}">
   <button>Add product</button>
 </a>

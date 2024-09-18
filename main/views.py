@@ -6,6 +6,7 @@ from django.core import serializers
 
 # Create your views here.
 def show_main(request):
+
     product_entries = Product.objects.all()
     
     context = {
@@ -33,8 +34,6 @@ def create_product_entry(request):
 def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
-
-
 
 def show_json(request):
     data = Product.objects.all()
