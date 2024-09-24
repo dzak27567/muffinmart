@@ -55,6 +55,19 @@ Django menggunakan kombinasi dari sessions dan cookies untuk mengingat pengguna 
 
 * Menggabungkan keduanya: Ketika server menerima permintaan dari pengguna yang telah login, ia akan mencari cookie session di header permintaan. Kemudian, ia akan menggunakan ID session yang ada di cookie untuk mencari informasi session yang sesuai di server. Jika session ditemukan, Django tahu bahwa pengguna tersebut telah login dan dapat mengakses informasi yang tersimpan di session tersebut.
 
+Adapun kegunaan lain cookie :
+Selain untuk manajemen session, cookies juga memiliki banyak kegunaan lain, antara lain:
+
+* Personalisasi: Menyimpan preferensi pengguna, seperti bahasa yang dipilih, tema tampilan, atau pengaturan lainnya.
+* Pelacakan: Melacak perilaku pengguna di situs web, seperti halaman yang dikunjungi atau produk yang dilihat. Informasi ini dapat digunakan untuk analisis atau untuk menampilkan iklan yang lebih relevan.
+* Keranjang Belanja: Menyimpan item yang ditambahkan pengguna ke keranjang belanja mereka, bahkan jika mereka belum login.
+
+Tidak semua cookies aman digunakan. Ada beberapa jenis cookies yang dapat menimbulkan risiko keamanan atau privasi:
+
+* Cookies Pihak Ketiga: Cookies ini dibuat oleh domain lain selain situs web yang Anda kunjungi. Mereka sering digunakan untuk pelacakan lintas situs dan dapat digunakan untuk mengumpulkan informasi tentang aktivitas online Anda di berbagai situs web.
+* Cookies Pelacakan: Cookies ini digunakan untuk melacak perilaku pengguna di situs web. Meskipun informasi ini dapat berguna untuk analisis, beberapa pengguna mungkin merasa tidak nyaman dengan tingkat pelacakan yang dilakukan.
+* Cookies yang Tidak Aman: Jika cookie tidak dienkripsi atau ditangani dengan benar, informasi yang tersimpan di dalamnya dapat dicuri atau dimanipulasi oleh penyerang.
+
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
 Membuat Fungsi register, login_user, dan logout_user di dalam views.py pada direktori main
