@@ -19,9 +19,8 @@ def show_main(request):
     
     context = {
         'name' : request.user.username,
-        'price': '1000000',
+        'kelas': 'PBP C',
         'description': 'gg gimang',
-        'quantity': '1',
         'product_entries' : product_entries,
         'last_login': request.COOKIES['last_login'],
     }
