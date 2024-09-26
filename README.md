@@ -340,7 +340,7 @@ Penyerang dapat membuat situs web atau email yang berisi formulir atau skrip yan
 1. Membuat folder templates pada root folder yang berisi base.html. Kemudian menyesuaikan variabel TEMPLATES pada settings.py di direktoti proyek agar base.html tadi terdeteksi.
 2. Melengkapi kerangka yang terdapat pada base.html untuk kebutuhan aplikasi main berupa atribut form untuk menerima input user dan mendisplay hasil dari input tersebut.
 3. Membuat berkas baru pada folder main dengan nama forms.py. forms.py ini akan membuat struktur form yang dapat menerima data dalam hal ini di web saya, untuk menambahkan data produk.
-4. Membuat fungsi  `create_product_entry` pada forms.py kemudian mengimport dan menambahkan path fungsi tersebut ke urls.py
+4. Membuat fungsi  `create_product_entry` pada views.py kemudian mengimport dan menambahkan path fungsi tersebut ke urls.py
 5. Membuat `create_product_entry.html` pada direktori main/templates untuk membuat form untuk menambahkan produk dan tidak lupa menambahkan csrf_token pada berkas tersebut supaya tercegah dari serangan berbahaya
 
 ### Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
