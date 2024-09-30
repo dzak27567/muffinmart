@@ -1,0 +1,64 @@
+<!-- navbar.html -->
+<nav class="flex justify-between items-center py-4 bg-gray-200">
+    <!-- Logo, Namaweb, dan Navigation buttons (Desktop version) -->
+    <div class="hidden md:flex ml-4 items-center">
+      
+      <span class="text-lg font-bold">Namaweb</span>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+        Home
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+        Products
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+        Category
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+        Carts
+      </button>
+    </div>
+    
+    <!-- Mobile version (Hamburger menu) -->
+    <div class="md:hidden flex items-center">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" id="hamburger">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile navigation menu -->
+    <div class="md:hidden bg-white p-4 absolute top-0 left-0 w-full h-screen" id="mobile-nav">
+      <div class="flex flex-col">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Home
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Products
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Category
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Carts
+        </button>
+      </div>
+    </div>
+    
+    <!-- Hello {nama_user} and Logout button -->
+    <div class="flex items-center mr-4">
+      <h2 class="text-lg font-bold mr-2">Hello, {{ user.username }}</h2>
+      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        Logout
+      </button>
+    </div>
+  </nav>
+  
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+  </script>
