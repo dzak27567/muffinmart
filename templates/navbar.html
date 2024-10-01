@@ -1,64 +1,58 @@
-<!-- navbar.html -->
-<nav class="flex justify-between items-center py-4 bg-gray-200">
-    <!-- Logo, Namaweb, dan Navigation buttons (Desktop version) -->
-    <div class="hidden md:flex ml-4 items-center">
-      
-      <span class="text-lg font-bold">Namaweb</span>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
-        Home
-      </button>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-        Products
-      </button>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-        Category
-      </button>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-        Carts
-      </button>
+{% load static %}   
+<nav class="navbar p-4 w-full">
+    <div class="flex justify-between items-center w-full">
+        <div class="flex items-center space-x-4">
+            <img src="{% static 'images/kucingku.png' %}" alt="Logo MuffinMart" class="h-10 w-auto">
+            <div class="text-white text-2xl font-bold">
+                MuffinMart
+            </div>
+        </div>
+
+        <div class="md:hidden flex">
+            <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg focus:outline-none ml-auto" aria-controls="mobile-menu" aria-expanded="false" id="hamburger-btn">
+                <svg class="w-6 h-6 text-white" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="hamburger-icon">
+                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-4">
+            {% if user.is_authenticated %}
+                <span class="text-white">Hello, {{ user.username }}</span>
+                <a href="{% url 'main:logout' %}" class="logout-button text-white font-bold py-2 px-4 rounded">
+                    Log Out
+                </a>
+            {% else %}
+                <a href="{% url 'main:login' %}" class="text-white font-bold py-2 px-4 rounded border border-white">
+                    Log In
+                </a>
+            {% endif %}
+        </div>
     </div>
-    
-    <!-- Mobile version (Hamburger menu) -->
-    <div class="md:hidden flex items-center">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" id="hamburger">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+
+    <div class="hidden md:hidden flex-col space-y-4 mt-4" id="mobile-menu">
+        <div class="flex flex-col space-y-2 w-full">
+            {% if user.is_authenticated %}
+                <span class="text-white">Hello, {{ user.username }}</span>
+                <a href="{% url 'main:logout' %}" class="logout-button text-white font-bold py-2 px-4 rounded w-full text-left">
+                    Log Out
+                </a>
+            {% else %}
+                <a href="{% url 'main:login' %}" class="text-white font-bold py-2 px-4 rounded w-full text-left border border-white">
+                    Log In
+                </a>
+            {% endif %}
+        </div>
     </div>
-    
-    <!-- Mobile navigation menu -->
-    <div class="md:hidden bg-white p-4 absolute top-0 left-0 w-full h-screen" id="mobile-nav">
-      <div class="flex flex-col">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Home
-        </button>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Products
-        </button>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Category
-        </button>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Carts
-        </button>
-      </div>
-    </div>
-    
-    <!-- Hello {nama_user} and Logout button -->
-    <div class="flex items-center mr-4">
-      <h2 class="text-lg font-bold mr-2">Hello, {{ user.username }}</h2>
-      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-        Logout
-      </button>
-    </div>
-  </nav>
-  
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    
-    hamburger.addEventListener('click', () => {
-      mobileNav.classList.toggle('hidden');
+</nav>
+
+<script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        hamburgerIcon.classList.toggle('open');
     });
-  </script>
+</script>

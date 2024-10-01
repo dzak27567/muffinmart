@@ -1,19 +1,95 @@
-#mobile-nav {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
+@keyframes tortoiseshell {
+    0% {
+        background-color: #4c3e2c; /* Warna dasar */
+    }
+    20% {
+        background-color: #8b5a2b; /* Warna pertama */
+    }
+    40% {
+        background-color: #5a4e3d; /* Warna kedua */
+    }
+    60% {
+        background-color: #c79a64; /* Warna ketiga */
+    }
+    80% {
+        background-color: #5e4b3a; /* Warna keempat */
+    }
+    100% {
+        background-color: #4c3e2c; /* Kembali ke warna dasar */
+    }
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #8B4513; /* Coklat terang (Sienna) */
+    color: white; /* Set warna teks putih */
+}
+
+.navbar button, .navbar a {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+.navbar button:hover, .navbar a:hover {
+    background-color: #8B4513; /* Warna tetap saat hover */
+    border-color: white; /* Warna border tetap saat hover */
+}
+
+#mobile-menu button, #mobile-menu a {
+    background-color: #8B4513; /* Background coklat terang pada mobile menu */
+    color: white; /* Teks putih */
+    border: none;
+}
+
+#mobile-menu button:hover, #mobile-menu a:hover {
+    background-color: #8B4513; /* Tetap coklat terang saat hover di mobile menu */
+}
+
+.navbar img {
+    height: 40px; /* Atur ukuran logo */
+    width: auto;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tambahkan animasi transisi jika tombol berubah bentuk */
+#hamburger-icon.open {
+    /* Misalnya, putar ikon saat menu dibuka */
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
+
+/* Gaya input, textarea, select tetap mempertahankan warna tortoiseshell */
+.form-style form input, 
+.form-style form textarea, 
+.form-style form select {
     width: 100%;
-    height: 100vh;
-    background-color: #fff;
-    padding: 20px;
-    z-index: 1;
-  }
-  
-  #mobile-nav.hidden {
-    display: none;
-  }
-  
-  #mobile-nav button {
-    margin-bottom: 20px;
-  }
+    padding: 0.5rem;
+    border: 2px solid #bcbcbc;
+    border-radius: 0.375rem;
+    background-color: #4c3e2c; /* Warna dasar tortoiseshell */
+    color: white; /* Warna teks agar kontras */
+    animation: tortoiseshell 8s linear infinite; /* Animasi tortoiseshell */
+}
+
+.form-style form input:focus, 
+.form-style form textarea:focus, 
+.form-style form select:focus {
+    outline: none;
+    border-color: #674ea7; /* Warna saat focus */
+    box-shadow: 0 0 0 3px #674ea7;
+}
+
+.navbar .logout-button { /* Tambahkan .navbar di depan */
+    background-color: #dc2626; 
+    border: 1px solid #dc2626; 
+}
+
+.navbar .logout-button:hover { /* Tambahkan .navbar di depan */
+    background-color: #c21f1f; 
+}

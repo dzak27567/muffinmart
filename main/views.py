@@ -22,6 +22,7 @@ def show_main(request):
     context = {
         'name' : request.user.username,
         'kelas': 'PBP C',
+        'npm' : '2306202132',
         'description': 'gg gimang',
         'product_entries' : product_entries,
         'last_login': request.COOKIES['last_login'],
@@ -68,6 +69,7 @@ def register(request):
             form.save()
             messages.success(request, 'Your account has been successfully created!')
             return redirect('main:login')
+    
     context = {'form':form}
     return render(request, 'register.html', context)
 
@@ -95,10 +97,10 @@ def logout_user(request):
 
 def edit_product(request, id):
     # Get mood entry berdasarkan id
-    Product = Product.objects.get(pk = id)
+    product = Product.objects.get(pk = id)
 
-    # Set mood entry sebagai instance dari form
-    form = Product(request.POST or None, instance=mood)
+   
+    form = ProductForm(request.POST or None, instance=product)
 
     if form.is_valid() and request.method == "POST":
         # Simpan form dan kembali ke halaman awal
