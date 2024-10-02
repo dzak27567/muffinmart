@@ -5,7 +5,7 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center" style="background-color: #8B4513;"> <!-- Latar belakang coklat statis -->
+<div class="min-h-screen flex items-center justify-center" style="background-color: #8B4513;"> 
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border-2 border-black">
     <h1 class="text-3xl font-bold text-black mb-6 text-center">Login</h1>
 
@@ -13,16 +13,39 @@
       {% csrf_token %}
 
       <div class="space-y-4 form-style">
+        <!-- Non-field errors (e.g., invalid login) -->
+        {% if form.non_field_errors %}
+        <ul class="text-red-500">
+          {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
         <!-- Username Field -->
         <div>
           <label for="username" class="block text-black font-bold mb-2">Username:</label>
-          <input type="text" name="username" id="username" class="w-full border-2 border-black rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-black" required>
+          <input type="text" name="username" id="username" value="{{ form.username.value }}" class="w-full border-2 border-black rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-black" required>
+          {% if form.username.errors %}
+            <ul class="text-red-500">
+              {% for error in form.username.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
 
         <!-- Password Field -->
         <div>
           <label for="password" class="block text-black font-bold mb-2">Password:</label>
           <input type="password" name="password" id="password" class="w-full border-2 border-black rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-black" required>
+          {% if form.password.errors %}
+            <ul class="text-red-500">
+              {% for error in form.password.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
       </div>
 

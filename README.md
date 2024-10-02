@@ -10,12 +10,57 @@
 <br>
 
 ### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Dalam CSS, terdapat beberapa faktor yang mempengaruhi prioritas (specificity) sebuah selector ketika diterapkan pada elemen HTML. Urutan prioritas tersebut adalah sebagai berikut:
+
+1. Inline Styles: Gaya CSS yang diterapkan langsung pada elemen menggunakan atribut style. Ini memiliki prioritas tertinggi.
+2. ID Selector: Selector yang menggunakan ID memiliki prioritas lebih tinggi daripada class, attribute, atau pseudo-class selector. Contoh: #header.
+3. Class, Attribute, dan Pseudo-class Selector: Selector yang menggunakan class (.class-name), attribute ([type="text"]), atau pseudo-class (:hover) berada di urutan setelah ID.
+4. Tag Selector (Element Selector): Selector yang hanya menggunakan nama elemen HTML, seperti div, memiliki prioritas paling rendah.
+5. Universal Selector (*), combinator (+, >, ~), dan pseudo-element (::before, ::after) memiliki prioritas yang lebih rendah daripada yang disebutkan di atas.
+
+CSS juga dipengaruhi oleh order of appearance (urutan penulisan). Jika dua selector memiliki prioritas yang sama, CSS yang dideklarasikan paling akhir dalam file akan diterapkan.
 
 ###  Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Responsive design adalah teknik dalam pengembangan web yang memungkinkan website untuk menyesuaikan tampilannya berdasarkan ukuran layar perangkat yang digunakan (mobile, tablet, desktop, dll.). Ini menjadi penting karena saat ini, banyak pengguna mengakses website dari berbagai jenis perangkat, terutama dari ponsel.
+Menggunakan responsive design dapat meningkatkan user experience dan aksesibilitas, serta membantu peringkat SEO di mesin pencari seperti Google.
 
+Contoh Aplikasi yang Menerapkan Responsive Design:
+* Tokopedia: Menggunakan responsive design untuk memastikan pengguna di perangkat mobile memiliki pengalaman yang optimal sama seperti pengguna di desktop.
+
+* Contoh yang Belum Menerapkan: Beberapa website lama dan beberapa website pemerintahan di Indonesia
 ### Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+* Margin: Ruang kosong di luar border elemen. Margin menciptakan jarak antara elemen tersebut dengan elemen lain di sekitarnya.
+Contoh:
+```css
+Copy code
+.box {
+  margin: 20px;
+}
+```
+
+* Border: Batas atau garis yang mengelilingi elemen. Border diletakkan di antara margin dan padding.
+Contoh:
+```css
+Copy code
+.box {
+  border: 2px solid black;
+}
+```
+* Padding: Ruang di dalam elemen, antara konten elemen dan border. Padding menambah ruang dalam elemen itu sendiri.
+Contoh:
+```css
+Copy code
+.box {
+  padding: 10px;
+}
+```
+Jadi, jika sebuah elemen memiliki konten di dalamnya, padding menambahkan ruang di sekitar konten, border menutupi elemen tersebut, dan margin menambah ruang di luar elemen tersebut.
 
 ### Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+1. Flexbox adalah sistem tata letak satu dimensi yang digunakan untuk menyusun elemen secara fleksibel di dalam kontainer, baik secara horizontal maupun vertikal. Flexbox sangat berguna untuk membuat tata letak yang responsif dan seimbang secara otomatis.Kegunaan: Flexbox cocok digunakan ketika ingin mengatur elemen dalam satu baris atau kolom, seperti membuat navigasi, tombol, atau kartu produk yang bisa disusun ulang sesuai ukuran layar.
+
+
+2. Grid layout adalah sistem tata letak dua dimensi yang memungkinkan pengaturan elemen dalam baris dan kolom secara bersamaan. Grid sangat berguna untuk membuat tata letak yang lebih kompleks, seperti halaman web yang memiliki header, sidebar, konten utama, dan footer.Kegunaan: Grid cocok untuk struktur yang lebih kompleks, seperti tata letak halaman web yang memiliki banyak elemen dengan ukuran yang berbeda-beda.
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
