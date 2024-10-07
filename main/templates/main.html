@@ -42,7 +42,7 @@
         </div>
         <!-- Modal body -->
         <div class="px-6 py-4 space-y-6 form-style">
-          <form id="ProductForm">
+          <form id="productForm">
             <!-- Product Name -->
             <div class="mb-4">
               <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
@@ -92,24 +92,25 @@
 </div>
 
 <script>
-  document.getElementById("ProductForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    addProductEntry();
-  })
-  
-
   function addProductEntry() {
     fetch("{% url 'main:add_product_entry_ajax' %}", {
       method: "POST",
       body: new FormData(document.querySelector('#ProductForm')),
     })
     .then(response => refreshProductEntries())
-
-    document.getElementById("ProductForm").reset(); 
+  
+    document.getElementById("productForm").reset(); 
     document.querySelector("[data-modal-toggle='crudModal']").click();
-
+  
     return false;
   }
+
+  document.getElementById("productForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    addProductEntry();
+  })
+  
+
   const modal = document.getElementById('crudModal');
   const modalContent = document.getElementById('crudModalContent');
 
@@ -136,8 +137,8 @@
       }, 150); 
     }
     
-    document.getElementById("cancelButton").addEventListener("click", hideModal);
-    document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+  document.getElementById("cancelButton").addEventListener("click", hideModal);
+  document.getElementById("closeModalBtn").addEventListener("click", hideModal);
     
   async function getProductEntries(){
       return fetch("{% url 'main:show_json' %}").then((res) => res.json())

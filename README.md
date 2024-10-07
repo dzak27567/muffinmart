@@ -29,7 +29,121 @@ Jika request POST dilakukan menggunakan AJAX dan tidak menyertakan token CSRF, D
 Pembersihan data input pengguna di backend diperlukan untuk menjaga keamanan dan integritas aplikasi. Jika hanya dilakukan di frontend, pengguna yang berniat jahat dapat memodifikasi atau mengabaikan validasi pada browser dan mengirim data berbahaya ke server, yang berisiko menyebabkan serangan seperti SQL injection atau XSS. Oleh karena itu, backend perlu memvalidasi dan membersihkan data untuk mencegah manipulasi tersebut.
 
 Selain itu, backend memastikan konsistensi data di seluruh aplikasi, terlepas dari perangkat atau platform yang digunakan pengguna. Validasi di sisi server menjamin bahwa data yang diterima selalu sesuai dengan aturan bisnis, meskipun ada variasi dalam perilaku browser atau jika data dikirim langsung melalui API. Dengan begitu, aplikasi tetap aman dan data yang diproses selalu valid.
+
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+1. Implementasi AJAX GET
+* memastikan data yg diambil hanya milik pengguna yang login
+```python
+def show_xml(request):
+    data = Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+* hapus conditional blok product entries untuk menampilkan card_product ketika kosong atau tidak.
+*  menambahkan fungsi getproductentries di block script 
+```javascript
+async function getProductEntries(){
+      return fetch("{% url 'main:show_json' %}").then((res) => res.json())
+  }
+```
+
+2. implementasi AJAX POST
+* buat modal sbg form
+```html
+      <div id="product_entry_cards"></div>
+    <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+      <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 border-b rounded-t">
+          <h3 class="text-xl font-semibold text-gray-900">
+            Add New Product
+          </h3>
+          <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="px-6 py-4 space-y-6 form-style">
+          <form id="productForm">
+            <!-- Product Name -->
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
+              <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter product name" required>
+            </div>
+            <!-- Price -->
+            <div class="mb-4">
+              <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+              <input type="number" id="price" name="price" min="0" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter product price" required>
+            </div>
+            <!-- Description -->
+            <div class="mb-4">
+              <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+              <textarea id="description" name="description" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Describe the product" required></textarea>
+            </div>
+            <!-- Quantity -->
+            <div class="mb-4">
+              <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+              <input type="number" id="quantity" name="quantity" min="1" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter product quantity" required>
+            </div>
+          </form>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+          <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
+          <button type="submit" id="submitProduct" form="ProductForm" class="bg-green-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+        </div>
+      </div>
+    </div>
+```
+
+* buat fungsi untuk nambah produk dengan ajax dan jangan lupa  tambahkan ke urls dengan path /create-ajax/ 
+```python
+@csrf_exempt
+@require_POST
+def add_product_entry_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    price = request.POST.get("price")
+    description = strip_tags(request.POST.get("description"))
+    quantity = request.POST.get("quantity")
+    user = request.user
+
+    new_product = Product(
+        name=name, price=price,
+        description=description,
+        quantity=quantity,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+```
+* fungsi baru pada block script dengan nama addProductEntry dan tambahkan event listener
+```javascript
+function addProductEntry() {
+    fetch("{% url 'main:add_product_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#ProductForm')),
+    })
+    .then(response => refreshProductEntries())
+  
+    document.getElementById("productForm").reset(); 
+    document.querySelector("[data-modal-toggle='crudModal']").click();
+  
+    return false;
+  }
+
+  document.getElementById("productForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    addProductEntry();
+  })
+```
 </details>
 
 
