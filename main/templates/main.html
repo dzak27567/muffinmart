@@ -42,7 +42,7 @@
         </div>
         <!-- Modal body -->
         <div class="px-6 py-4 space-y-6 form-style">
-          <form id="productForm">
+          <form id="ProductForm">
             <!-- Product Name -->
             <div class="mb-4">
               <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
@@ -98,14 +98,14 @@
       body: new FormData(document.querySelector('#ProductForm')),
     })
     .then(response => refreshProductEntries())
-  
-    document.getElementById("productForm").reset(); 
+
+    document.getElementById("ProductForm").reset(); 
     document.querySelector("[data-modal-toggle='crudModal']").click();
-  
+
     return false;
   }
 
-  document.getElementById("productForm").addEventListener("submit", (e) => {
+  document.getElementById("ProductForm").addEventListener("submit", (e) => {
     e.preventDefault();
     addProductEntry();
   })
