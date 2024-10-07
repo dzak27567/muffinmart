@@ -11,9 +11,15 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import  reverse
-
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 
 # Create your views here.
+
+
+
+
 @login_required(login_url='/login')
 def show_main(request):
 
@@ -30,6 +36,25 @@ def show_main(request):
 
     return render(request, "main.html", context)
 
+@csrf_exempt
+@require_POST
+def add_product_entry_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    price = request.POST.get("price")
+    description = strip_tags(request.POST.get("description"))
+    quantity = request.POST.get("quantity")
+    user = request.user
+
+    new_product = Product(
+        name=name, price=price,
+        description=description,
+        quantity=quantity,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+
 def create_product_entry(request):
     form = ProductForm(request.POST or None)
 
@@ -45,11 +70,11 @@ def create_product_entry(request):
 
 
 def show_xml(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_xml_by_id(request, id):

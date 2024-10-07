@@ -3,6 +3,35 @@
 ## Npm : 2306202132
 ## Link : http://fadhlurohman-dzaki-muffinmart.pbp.cs.ui.ac.id/
 
+# Tugas 6: JavaScript dan AJAX
+<details>
+<summary>Click for more detail</summary>
+<br>
+
+### Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+JavaScript memiliki peran penting dalam pengembangan aplikasi web karena kemampuannya untuk membuat halaman lebih interaktif dan responsif. Dengan JavaScript, elemen-elemen pada halaman web dapat diubah secara dinamis tanpa perlu memuat ulang halaman, misalnya saat melakukan validasi form atau memperbarui konten menggunakan AJAX. Hal ini menciptakan pengalaman yang lebih cepat dan efisien bagi pengguna.
+
+Selain itu, JavaScript memungkinkan pengembangan aplikasi berbasis web yang lebih interaktif melalui manipulasi DOM (Document Object Model), sehingga tampilan dan konten halaman dapat berubah sesuai dengan aksi pengguna. Framework dan pustaka populer seperti React dan Vue.js juga membantu pengembang membangun aplikasi web kompleks dengan lebih mudah dan efisien.
+
+JavaScript juga kompatibel dengan semua browser utama dan, dengan adanya Node.js, dapat digunakan untuk pengembangan full-stack, baik di sisi klien maupun server. Dengan komunitas yang besar dan ekosistem yang kuat, JavaScript terus menjadi salah satu bahasa utama dalam pengembangan web modern.
+
+### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Fungsi dari penggunaan await saat menggunakan fetch() adalah untuk menunggu hingga Promise yang dihasilkan oleh fetch() selesai (berhasil atau gagal) sebelum melanjutkan eksekusi ke baris kode berikutnya. fetch() melakukan operasi HTTP secara asinkron dan mengembalikan Promise, yang berarti bahwa kode di bawahnya akan berjalan sebelum hasil fetch() tersedia jika kita tidak menggunakan await.
+
+Jika kita tidak menggunakan await, Promise yang dikembalikan oleh fetch() akan segera diterima, tetapi data belum tersedia. Kode di bawahnya akan berjalan sebelum permintaan selesai, yang bisa menyebabkan kesalahan saat mencoba mengakses data yang belum tersedia.
+
+anpa await, fetch() akan mengembalikan sebuah Promise, bukan hasil respons HTTP, sehingga kita tidak bisa langsung menggunakan data yang diinginkan tanpa menggunakan .then() atau await untuk menunggu penyelesaiannya. Akibatnya, kita mungkin mencoba mengakses data yang belum tersedia, yang bisa menyebabkan bug / error.
+### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Kita perlu menggunakan decorator csrf_exempt pada view yang digunakan untuk AJAX POST jika request tersebut tidak mengirimkan token CSRF. Hal ini penting karena Django secara default mengaktifkan proteksi CSRF (Cross-Site Request Forgery) pada setiap request POST, untuk mencegah serangan di mana pihak ketiga dapat memalsukan request atas nama pengguna yang sedang login.
+
+Jika request POST dilakukan menggunakan AJAX dan tidak menyertakan token CSRF, Django akan menolak request tersebut dan mengembalikan 403 Forbidden karena dianggap sebagai permintaan yang berpotensi berbahaya. Dengan menambahkan @csrf_exempt, kita memberitahu Django untuk mengecualikan proteksi CSRF pada view tertentu sehingga AJAX POST bisa diproses tanpa memverifikasi token CSRF.
+### 
+Pembersihan data input pengguna di backend diperlukan untuk menjaga keamanan dan integritas aplikasi. Jika hanya dilakukan di frontend, pengguna yang berniat jahat dapat memodifikasi atau mengabaikan validasi pada browser dan mengirim data berbahaya ke server, yang berisiko menyebabkan serangan seperti SQL injection atau XSS. Oleh karena itu, backend perlu memvalidasi dan membersihkan data untuk mencegah manipulasi tersebut.
+
+Selain itu, backend memastikan konsistensi data di seluruh aplikasi, terlepas dari perangkat atau platform yang digunakan pengguna. Validasi di sisi server menjamin bahwa data yang diterima selalu sesuai dengan aturan bisnis, meskipun ada variasi dalam perilaku browser atau jika data dikirim langsung melalui API. Dengan begitu, aplikasi tetap aman dan data yang diproses selalu valid.
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+</details>
+
 
 # Tugas 5: Desain Web menggunakan HTML, CSS dan Framework CSS
 <details>
