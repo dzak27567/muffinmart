@@ -19,7 +19,7 @@ from django.utils.html import strip_tags
 
 
 
-@csrf_exempt
+
 @login_required(login_url='/login')
 def show_main(request):
 
